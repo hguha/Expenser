@@ -1,0 +1,27 @@
+<h1>Month By Month Spending</h1>
+<canvas id="monthly-spending-chart"></canvas>
+
+<h1>Quarterly Spending</h1>
+<canvas id="quarterly-chart"></canvas>
+
+<h1>Proportional Spending</h1>
+<select id="prop-chart-selector">
+    <option disabled selected value>    </option>
+    <option value="Jan">Jan</option>
+    <option value="Feb">Feb</option>
+    <option value="Mar">Mar</option>
+    <option value="Apr">Apr</option>
+    <option value="May">May</option>
+    <option value="Jun">Jun</option>
+    <option value="Jul">Jul</option>
+    <option value="Aug">Aug</option>
+    <option value="Sep">Sep</option>
+    <option value="Oct">Oct</option>
+    <option value="Nov">Nov</option>
+    <option value="Dec">Dec</option>
+</select>
+<button onclick="updatePropChart()">Update</button>
+<canvas id="proportion-chart"></canvas>
+
+<script>loadGraphs()</script>
+

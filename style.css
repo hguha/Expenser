@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+}
+body {
+    font-family: sans-serif;
+    background: #222;
+    color: white;
+}
+
+input, textarea, label, #modal-cat {
+    display:block;
+    width: 100%;
+    text-align: left;
+    color: white;
+}
+
+select {
+    background: none;
+    color: white;
+    padding: 1%;
+    border: 1px solid white;
+}
+
+.swal2-container .swal2-popup {
+    background: #3c3c3c;
+}
+
+.swal2-title {
+    color: white !important;
+}
+
+input, textarea, #modal-cat {
+    padding: 2%;
+    border: 1px solid white;
+    margin: 1% 0;
+    background: none;
+}
+
+label {
+    font-size: 15px;
+    margin-top: 3%;
+}
+
+
+.upper-nav .upper-nav-text {
+    margin: 0 2%;
+    font-size:1.5em;
+    font-weight: bold;
+}
+
+.upper-nav #filter {
+    margin-right: 1%;
+}
+
+.upper-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    right: 0;
+    top: 0;
+    padding: 0.5%;
+    text-transform: uppercase;
+
+}
+
+/* EXPENSE LISTING */
+.expense-row {
+    border: 1px solid #3c3c3c;
+    padding: 1%;
+    margin: 1% 0;
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: 10px;
+}
+
+.expense-row:hover {
+    background: #3c3c3c;
+}
+
+.expense-row .details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.expense-row .details .title, .expense-row .details .amt{
+    font-weight: bold;
+}
+
+.expense-row .details .date, .expense-row .details .cat{
+    color: gray;
+}
+
+#app-content {
+    margin-top: 50px;
+    margin-bottom: 70px;
+    padding: 1%;
+}
+
+button {
+    padding: 1%;
+    border: 1px solid #3c3c3c;
+    color: #3c3c3c;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.5s;
+    text-transform: uppercase;
+}
+
+button:hover {
+    /* background: #3c3c3c; */
+    color: white;
+}
+
+#sign-in {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MENU */
+#menu {
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    background: #222;
+    width: 100%;
+    justify-content: space-evenly;
+    height: 50px;
+    cursor: pointer;
+    border-top: 1px solid white;
+}
+
+#menu button {
+    width: 100%;
+    cursor: pointer;
+    color: gray;
+    border: none;
+}
+
+#menu button.active-tab {
+    color: white;
+}
+
+#menu button:hover {
+    color: white;
+}
+
+
+/* OVERVIEW */
+
+#monthly-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#monthly-cards .month-card {
+    border: 1px solid #3c3c3c;
+    flex: 20%;
+    padding: 2%;
+    margin: 1%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#monthly-cards .month-card:hover {
+    background: #2a2a2a;
+}
+
+.monthly-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #3c3c3c;
+}
+
+.card-title {
+    padding: 2% 0;
+    text-align: center;
+}
+
+/* PHONE */
+@media (max-width: 415px) {
+    #app-content {
+        padding: 2%;
+    }
+    #monthly-cards .month-card {
+        flex: 50%;
+    }
+
+    #monthly-cards .month-card:hover {
+        background: none;
+    }
+
+    .menu-text {
+        display: none;
+    }
+
+    i {
+        font-size: 25px;
+    }
+
+    .expense-row {
+        padding: 3%;
+    }
+
+    .upper-nav .upper-nav-text {
+        font-size:1em;
+        margin: 0 4%;
+    }
+
+    #menu {
+        padding-bottom: 15px;
+    }
+}
