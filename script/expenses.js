@@ -10,7 +10,7 @@ const nextDay = (date) => {
 }
 
 let empty = {title:"", cat:"", amt: "", date: formatDateForInput(new Date()), notes: ""};
-let cats = ["Groceries", "Amazon", "Feasting", "Misc"];
+let cats = ["Groceries", "Amazon", "Feasting", "Misc", "Gifts"];
 
 const addOrEditItemModal = (idx) => {
     const editing = idx > -1;
@@ -44,7 +44,7 @@ const addOrEditItemModal = (idx) => {
                 resolve({
                 title: $('#modal-title').val(),
                 date: $('#modal-date').val(),
-                cat: $('#modal-cat').val(),
+                cat: $('#modal-cat').val() || "Misc",
                 amt: $('#modal-amt').val(),
                 notes: $('#modal-notes').val(),
                 })

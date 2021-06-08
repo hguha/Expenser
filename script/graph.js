@@ -28,7 +28,14 @@ function loadGraphs() {
         },
         // Configuration options go here
         options: {
-            legend: { display: false }
+            legend: { display: false },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 1000,
+                    }
+                }]
+            }
         }
     });
 
@@ -60,7 +67,6 @@ function loadGraphs() {
     });
 
     let proportionalData = cats.map(x => totalByCat(x, curMonth).toFixed(2));
-    console.log(proportionalData);
 
     proportionChart = new Chart(proportionCanvas, {
         type: 'pie',
@@ -73,6 +79,7 @@ function loadGraphs() {
                     catColors["amazon"],
                     catColors["feasting"],
                     catColors["misc"],
+                    catColors["gifts"],
                 ],
                 data: proportionalData
             }]

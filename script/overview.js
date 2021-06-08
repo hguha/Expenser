@@ -8,14 +8,26 @@ const totalByCat = (cat, month) => {
     return d;
 }
 
+const getSubTotal = (data, i) => {
+    let sum = 0;
+    for(let d of data) {
+        firstOfMonth = new Date(`${i+1}/1/${curYear}`);
+        if(i >= d.startDate.toDate().getMonth() && firstOfMonth <= d.endDate.toDate()) {
+            sum += Number(d.amt);
+        }
+    }
+    return sum;
+}
+
 const getMonthTotals = (i) => {
     let totals = [];
+
     for(let i = 0; i < overviewData.length; i++) {
         let utils = (Number(overviewData[i].water) + Number(overviewData[i].electric) + Number(overviewData[i].gas) + Number(overviewData[i].rent));
-        
+        let subs = getSubTotal(subscriptionsData, i);
         let cats = expenseData.filter(x => x.date.toDate().getMonth() === i && x.date.toDate().getFullYear() === curYear); //get this months/years stuff
         cats = cats.reduce(((acc, curr) => acc+Number(curr.amt)), 0);
-        totals.push(cats+utils)
+        totals.push(cats+utils+subs)
     }
     return totals;
 }
@@ -31,7 +43,16 @@ const renderCards = () => {
             <hr><hr>
             ${monthlyExpenses.map(x => `<div class="monthly-total"><span>${x}</span><span>$${Number(overviewData[i][x.toLowerCase()]).toFixed(2)}</span></div><hr>`).join("")}
             <hr>
-            <div class="monthly-total"><span style="color: ${catColors["utilities"]}">Utilities</span><span>$${(Number(overviewData[i].water) + Number(overviewData[i].electric) + Number(overviewData[i].gas)).toFixed(2)}<span></div><hr>
+            <div class="monthly-total">
+                <span style="color: ${catColors["utilities"]}">Utilities</span>
+                <span>$${(Number(overviewData[i].water) + Number(overviewData[i].electric) + Number(overviewData[i].gas)).toFixed(2)}<span>
+            </div>
+            <hr>
+            <div class="monthly-total">
+                <span style="color: ${catColors["subscriptions"]}">Subscriptions</span>
+                <span>$${(getSubTotal(subscriptionsData, i)).toFixed(2)}<span>
+            </div>
+            <hr>
             ${cats.map(x => `<div class="monthly-total">  <span style="color: ${catColors[x.toLowerCase()]}">${x}</span><span>$${totalByCat(x, i).toFixed(2)}</span></div><hr>`).join("")}
             <hr><hr>
             <div style="font-weight: bold" class="monthly-total"><span>Total</span><span>$${getMonthTotals()[i].toFixed(2)}</span></div>
@@ -71,6 +92,8 @@ const editCard = (idx) => {
                 let data = {...d, ...result.value};
                 delete data.docId;
                 overviewRef.doc(d.docId).update(data);
+                overviewData[idx] = data;
+                renderCards();
             }
     }).catch(swal.noop)
 }

@@ -53,6 +53,7 @@ auth.onAuthStateChanged(user => {
 //DATABASE
 let expenseData;
 let overviewData;
+let subscriptionsData;
 let curUser;
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -61,11 +62,13 @@ const formatDate = (d) => {
 }
 
 let catColors = {
-    utilities: "#0049FF",
+    utilities: "#001BFF",
+    subscriptions: "#0049FF",
     groceries: "#2E6AFF",
     amazon: "#55A2FF",
     feasting: "#55C4FF",
-    misc: "#55E5FF"
+    misc: "#55E5FF",
+    gifts: "#A2F1FF"
 };
 
 let curMonth = (new Date()).getMonth();
@@ -87,7 +90,7 @@ const renderList = (data) => {
 
     for([i,d] of data.entries()) {
         if(showData.indexOf(d) == -1) continue;
-        
+    
         html+=` <div onclick="addOrEditItemModal(${i})" id="row-${i}" class="expense-row">
                     <div class="details">
                     <span class="title">${d.title}</span>
@@ -108,17 +111,21 @@ const renderList = (data) => {
 const db = firebase.firestore();
 let expensesRef;
 let overviewRef;
+let subscriptionsRef;
 let unsubscribe;
 let unsubscribe2;
+let unsubscribe3;
 
 auth.onAuthStateChanged(user => {
     curUser = user; 
     if (user) { 
         expensesRef = db.collection('expenses');
         overviewRef = db.collection('overview');
+        subscriptionsRef = db.collection('subscriptions');
+
 
         // GET EXPENSE LIST
-        unsubscribe = expensesRef
+        expensesRef
         .where('uid', '==', user.uid)
         .orderBy('date', 'desc')
         .onSnapshot(query => {
@@ -130,8 +137,21 @@ auth.onAuthStateChanged(user => {
             expenseData = data;
             renderList(data);
         });  
+
+        // GET SUBSCRIPTIONS LIST
+        subscriptionsRef
+        .where('uid', '==', user.uid)
+        .onSnapshot(query => {
+            let data = query.docs.map(doc => {
+                let d = doc.data()
+                d["docId"] = doc.id;
+                return d;
+            });
+            subscriptionsData = data;
+        });  
         
-        unsubscribe2 = overviewRef
+        // GET OVERVIEW LIST
+        overviewRef
         .where('uid', '==', user.uid)
         .orderBy('idx')
         .onSnapshot(query => {

@@ -205,7 +205,7 @@ hr {
     }
 
     i {
-        font-size: 25px;
+        font-size: 22px;
     }
 
     .expense-row {
@@ -220,4 +220,8 @@ hr {
     #menu {
         padding-bottom: 15px;
     }
+
+    input, select, textarea {
+    font-size: 16px;
+}
 }

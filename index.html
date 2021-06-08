@@ -43,8 +43,11 @@
             <div id="menu">
                 <button id="expenses" onclick="navigate('expenses')"><i class="fas fa-dollar-sign"></i> <span class="menu-text">Expenses</span></button>
                 <button id="overview" onclick="navigate('overview')"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Overview</span></button>
-                <button id="add-item" onclick="addOrEditItemModal(-1)"> <i class="fas fa-plus"></i> <span class="menu-text">Add Item</span></button>
+
+                <button id="graphs" onclick="navigate('subscriptions')"><i class="fas fa-calendar-alt"></i> <span class="menu-text">Subscriptions</span></button>
+
                 <button id="graphs" onclick="navigate('graphs')"><i class="fas fa-chart-pie"></i> <span class="menu-text">Graphs</span></button>
+
                 <button id="signOutBtn" class="btn btn-primary"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></button>
 
             </div>
@@ -54,6 +57,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script src="script/app.js"></script>
         <script src="script/expenses.js"></script>
+        <script src="script/subscriptions.js"></script>
         <script src="script/overview.js"></script>
         <script src="script/graph.js"></script>
     </body>
